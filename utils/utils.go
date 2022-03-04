@@ -35,7 +35,7 @@ func HostList() {
 }
 
 func SshToServer(host, port, user, pwd string) {
-	cmd := exec.Command("expect", "-c", `spawn ssh -p `+port+` `+user+`@`+host+`;expect "*assword:*";send "`+pwd+`\r";interact`)
+	cmd := exec.Command("expect", "-c", `spawn ssh -o StrictHostKeyChecking=no -p `+port+` `+user+`@`+host+`;expect "*assword:*";send "`+pwd+`\r";interact`)
 	cmd.Stdout = os.Stdout
 	cmd.Stdin = os.Stdin
 	cmd.Run()
